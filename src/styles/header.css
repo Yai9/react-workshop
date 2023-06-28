@@ -1,0 +1,19 @@
+.header {
+  background-color: rgb(41, 41, 41);
+  padding: 20px;
+  display: flex;
+  color: white;
+  font-weight: 800;
+}
+
+.languages {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.languages a {
+  color: azure;
+}

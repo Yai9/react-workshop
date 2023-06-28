@@ -1,0 +1,14 @@
+html,
+body {
+  background-color: rgb(98, 98, 98);
+}
+.card {
+  background-color: rgb(53, 53, 53);
+  padding: 20px;
+  max-width: 450px;
+  color: white;
+  margin: auto;
+  margin-top: 20px;
+  box-shadow: rgb(39, 39, 39);
+  border-radius: 5px;
+}
