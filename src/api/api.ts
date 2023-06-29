@@ -10,9 +10,6 @@ export const setToken = (data: any) => {
 };
 
 export const unsetToken = () => {
-  if (typeof window === "undefined") {
-    return;
-  }
   Cookies.remove("id");
   Cookies.remove("username");
   Cookies.remove("jwt");
@@ -20,6 +17,6 @@ export const unsetToken = () => {
 };
 
 export const getUserFromCookies = () => {
-  const user = Cookies.get("jwt");
+  const user = Cookies.get("username");
   return user;
 };
