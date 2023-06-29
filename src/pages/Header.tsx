@@ -8,7 +8,7 @@ const Header: FC = () => {
   };
   return (
     <div className="header">
-      <div>Header</div>
+      <div>Strapi v3</div>
       <ul className="languages">
         <li>
           <a href="?lang=en" onClick={() => changeLangHandler("en")}>

@@ -4,15 +4,17 @@ interface Data {
   Title: string;
   Description: string;
 }
-export const useFetch = (url: string) => {
+export const useFetch = () => {
   const [data, setData] = useState<Data[]>();
   const [error, setError] = useState<null | unknown>(null);
   const [loading, setLoading] = useState(true);
-
+  const lang = localStorage.getItem("lang") || "en";
+  const baseUrl = "http://localhost:1337/news";
+  const fetchDataUrl = `http://localhost:1337/news?_locale=${lang}`;
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(url);
+        const res = await fetch(fetchDataUrl);
         const json = await res.json();
         setData(json);
         setLoading(false);
@@ -22,12 +24,12 @@ export const useFetch = (url: string) => {
       }
     };
     fetchData();
-  }, [url, loading]);
+  }, [loading, fetchDataUrl]);
 
   const sendDataHandler = async (title: string, desc: string) => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:1337/tests", {
+      const res = await fetch(baseUrl, {
         headers: { "Content-Type": "application/json" },
         method: "POST",
         body: JSON.stringify({
@@ -43,7 +45,7 @@ export const useFetch = (url: string) => {
   };
   const updateDataHandler = async (id: string, title: string, desc: string) => {
     try {
-      const res = await fetch(`http://localhost:1337/tests/${id}`, {
+      const res = await fetch(`${baseUrl}/${id}`, {
         headers: { "Content-Type": "application/json" },
         method: "PUT",
         body: JSON.stringify({
@@ -61,7 +63,7 @@ export const useFetch = (url: string) => {
 
   const deletePostHandler = async (id: string) => {
     try {
-      const res = await fetch(`http://localhost:1337/tests/${id}`, {
+      const res = await fetch(`${baseUrl}/${id}`, {
         headers: { "Content-Type": "application/json" },
         method: "DELETE",
         body: JSON.stringify({
